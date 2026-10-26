@@ -187,11 +187,13 @@ def use(query, home=None):
     entry = find(query)
     if entry is None:
         raise ThemeError(f"Unknown theme '{query}'. Try /theme list.")
-    install(home, [entry["skin"]])
+    # The whole pack, so every theme also shows up in Desktop Appearance and /skin.
+    _, skipped = install(home)
     if not (home / "skins" / f"{entry['skin']}.yaml").exists():
         raise ThemeError(f"Skin file for {entry['skin']} is missing")
     select(home, entry["skin"])
-    return f"Theme: {entry['label']} (skin {entry['skin']})."
+    note = " (your own edited/personal file, not the pack's)" if entry["skin"] in skipped else ""
+    return f"Theme: {entry['label']} (skin {entry['skin']}){note}."
 
 
 # ── Omarchy ────────────────────────────────────────────────────────────────

@@ -103,7 +103,10 @@ class InstallerTests(unittest.TestCase):
         with mock.patch.object(m, "select") as select:
             self.assertIn("Tokyo Night", m.use("Tokyo Night", self.home))
             select.assert_called_once_with(self.home, "tokyo-night")
-        self.assertTrue((self.skins / "tokyo-night.yaml").exists())
+        self.assertEqual(len(list(self.skins.glob("*.yaml"))), len(m.catalog()))
+        (self.skins / "nord.yaml").write_text("name: nord\n# tweaked\n")
+        with mock.patch.object(m, "select"):
+            self.assertIn("your own", m.use("nord", self.home))
         with self.assertRaises(m.ThemeError):
             m.use("does-not-exist", self.home)
 
