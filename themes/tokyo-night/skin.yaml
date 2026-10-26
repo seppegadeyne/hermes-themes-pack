@@ -1,0 +1,81 @@
+name: tokyo-night
+description: Tokyo Night — navy, lavender, cyan, and rose
+colors:
+  banner_border: '#7AA2F7'
+  banner_title: '#BB9AF7'
+  banner_accent: '#7DCFFF'
+  banner_dim: '#565F89'
+  banner_text: '#C0CAF5'
+  ui_accent: '#7AA2F7'
+  ui_label: '#7DCFFF'
+  ui_ok: '#9ECE6A'
+  ui_error: '#F7768E'
+  ui_warn: '#E0AF68'
+  prompt: '#C0CAF5'
+  input_rule: '#414868'
+  response_border: '#BB9AF7'
+  session_label: '#7DCFFF'
+  session_border: '#565F89'
+  status_bar_bg: '#1A1B26'
+  status_bar_text: '#C0CAF5'
+  status_bar_strong: '#BB9AF7'
+  status_bar_dim: '#565F89'
+  status_bar_good: '#9ECE6A'
+  status_bar_warn: '#E0AF68'
+  status_bar_bad: '#FF9E64'
+  status_bar_critical: '#F7768E'
+  voice_status_bg: '#1A1B26'
+  completion_menu_bg: '#1A1B26'
+  completion_menu_current_bg: '#292E42'
+  completion_menu_meta_bg: '#16161E'
+  completion_menu_meta_current_bg: '#3B4261'
+  background: '#1A1B26'
+  ui_text: '#C0CAF5'
+  ui_primary: '#BB9AF7'
+  ui_tool: '#7AA2F7'
+  ui_thinking: '#565F89'
+  ui_border: '#414868'
+  syntax_string: '#9ECE6A'
+  syntax_number: '#FF9E64'
+  syntax_keyword: '#BB9AF7'
+  syntax_comment: '#565F89'
+banner_logo: '[bold #C0CAF5]██╗  ██╗███████╗██████╗ ███╗   ███╗███████╗███████╗       █████╗  ██████╗ ███████╗███╗   ██╗████████╗[/]
+
+  [bold #C0CAF5]██║  ██║██╔════╝██╔══██╗████╗ ████║██╔════╝██╔════╝      ██╔══██╗██╔════╝ ██╔════╝████╗  ██║╚══██╔══╝[/]
+
+  [#7DCFFF]███████║█████╗  ██████╔╝██╔████╔██║█████╗  ███████╗█████╗███████║██║  ███╗█████╗  ██╔██╗ ██║   ██║[/]
+
+  [#7AA2F7]██╔══██║██╔══╝  ██╔══██╗██║╚██╔╝██║██╔══╝  ╚════██║╚════╝██╔══██║██║   ██║██╔══╝  ██║╚██╗██║   ██║[/]
+
+  [#7b9ff3]██║  ██║███████╗██║  ██║██║ ╚═╝ ██║███████╗███████║      ██║  ██║╚██████╔╝███████╗██║ ╚████║   ██║[/]
+
+  [#7b9ff3]╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝╚═╝     ╚═╝╚══════╝╚══════╝      ╚═╝  ╚═╝ ╚═════╝ ╚══════╝╚═╝  ╚═══╝   ╚═╝[/]'
+banner_hero: '[#414868]⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣀⡀⠀⣀⣀⠀⢀⣀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀[/]
+
+  [#565F89]⠀⠀⠀⠀⠀⠀⢀⣠⣴⣾⣿⣿⣇⠸⣿⣿⠇⣸⣿⣿⣷⣦⣄⡀⠀⠀⠀⠀⠀⠀[/]
+
+  [#7AA2F7]⠀⢀⣠⣴⣶⠿⠋⣩⡿⣿⡿⠻⣿⡇⢠⡄⢸⣿⠟⢿⣿⢿⣍⠙⠿⣶⣦⣄⡀⠀[/]
+
+  [#7DCFFF]⠀⠀⠉⠉⠁⠶⠟⠋⠀⠉⠀⢀⣈⣁⡈⢁⣈⣁⡀⠀⠉⠀⠙⠻⠶⠈⠉⠉⠀⠀[/]
+
+  [#BB9AF7]⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣴⣿⡿⠛⢁⡈⠛⢿⣿⣦⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀[/]
+
+  [#BB9AF7]⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠿⣿⣦⣤⣈⠁⢠⣴⣿⠿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀[/]
+
+  [#7DCFFF]⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠉⠻⢿⣿⣦⡉⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀[/]
+
+  [#7AA2F7]⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⢷⣦⣈⠛⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀[/]
+
+  [#9D7CD8]⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⣴⠦⠈⠙⠿⣦⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀[/]
+
+  [#9D7CD8]⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸⣿⣤⡈⠁⢤⣿⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀[/]
+
+  [#C0CAF5]⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠛⠷⠄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀[/]
+
+  [dim #565F89]⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣀⠑⢶⣄⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀[/]
+
+  [dim #565F89]⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⠁⢰⡆⠈⡿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀[/]
+
+  [dim #414868]⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠳⠈⣡⠞⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀[/]
+
+  [dim #414868]⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀[/]'

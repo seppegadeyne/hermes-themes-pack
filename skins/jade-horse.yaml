@@ -1,0 +1,87 @@
+name: jade-horse
+description: Jade Horse — deep pine, celadon, sage, and pale jade (Omarchy palette)
+colors:
+  banner_border: '#64887B'
+  banner_title: '#A7DFC5'
+  banner_accent: '#86C7C5'
+  banner_dim: '#91AD9F'
+  banner_text: '#DFEDE5'
+  ui_accent: '#8BCBB1'
+  ui_label: '#86C7C5'
+  ui_ok: '#8BCBB1'
+  ui_error: '#D88D91'
+  ui_warn: '#C5CC91'
+  prompt: '#F0FAF4'
+  input_rule: '#2B5147'
+  response_border: '#8BCBB1'
+  session_label: '#86C7C5'
+  session_border: '#64887B'
+  status_bar_bg: '#0F1E19'
+  status_bar_text: '#DFEDE5'
+  status_bar_strong: '#A7DFC5'
+  status_bar_dim: '#91AD9F'
+  status_bar_good: '#8BCBB1'
+  status_bar_warn: '#C5CC91'
+  status_bar_bad: '#D2AB8D'
+  status_bar_critical: '#D88D91'
+  voice_status_bg: '#0F1E19'
+  completion_menu_bg: '#142620'
+  completion_menu_current_bg: '#2B5147'
+  completion_menu_meta_bg: '#0F1E19'
+  completion_menu_meta_current_bg: '#203B31'
+  background: '#142620'
+  ui_text: '#DFEDE5'
+  ui_primary: '#A7DFC5'
+  ui_tool: '#86C7C5'
+  ui_thinking: '#91AD9F'
+  ui_border: '#64887B'
+  shell_dollar: '#96B7D0'
+  selection_bg: '#2B5147'
+  diff_added: '#263F36'
+  diff_removed: '#3A2A2C'
+  diff_added_word: '#8BCBB1'
+  diff_removed_word: '#D88D91'
+  syntax_string: '#8BCBB1'
+  syntax_number: '#D2AB8D'
+  syntax_keyword: '#B7A1C8'
+  syntax_comment: '#64887B'
+banner_logo: '[bold #F0FAF4]██╗  ██╗███████╗██████╗ ███╗   ███╗███████╗███████╗       █████╗  ██████╗ ███████╗███╗   ██╗████████╗[/]
+
+  [bold #DFEDE5]██║  ██║██╔════╝██╔══██╗████╗ ████║██╔════╝██╔════╝      ██╔══██╗██╔════╝ ██╔════╝████╗  ██║╚══██╔══╝[/]
+
+  [#A7DFC5]███████║█████╗  ██████╔╝██╔████╔██║█████╗  ███████╗█████╗███████║██║  ███╗█████╗  ██╔██╗ ██║   ██║[/]
+
+  [#8BCBB1]██╔══██║██╔══╝  ██╔══██╗██║╚██╔╝██║██╔══╝  ╚════██║╚════╝██╔══██║██║   ██║██╔══╝  ██║╚██╗██║   ██║[/]
+
+  [#86C7C5]██║  ██║███████╗██║  ██║██║ ╚═╝ ██║███████╗███████║      ██║  ██║╚██████╔╝███████╗██║ ╚████║   ██║[/]
+
+  [#86C7C5]╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝╚═╝     ╚═╝╚══════╝╚══════╝      ╚═╝  ╚═╝ ╚═════╝ ╚══════╝╚═╝  ╚═══╝   ╚═╝[/]'
+banner_hero: '[#2B5147]⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣀⡀⠀⣀⣀⠀⢀⣀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀[/]
+
+  [#64887B]⠀⠀⠀⠀⠀⠀⢀⣠⣴⣾⣿⣿⣇⠸⣿⣿⠇⣸⣿⣿⣷⣦⣄⡀⠀⠀⠀⠀⠀⠀[/]
+
+  [#8BCBB1]⠀⢀⣠⣴⣶⠿⠋⣩⡿⣿⡿⠻⣿⡇⢠⡄⢸⣿⠟⢿⣿⢿⣍⠙⠿⣶⣦⣄⡀⠀[/]
+
+  [#86C7C5]⠀⠀⠉⠉⠁⠶⠟⠋⠀⠉⠀⢀⣈⣁⡈⢁⣈⣁⡀⠀⠉⠀⠙⠻⠶⠈⠉⠉⠀⠀[/]
+
+  [#A7DFC5]⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣴⣿⡿⠛⢁⡈⠛⢿⣿⣦⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀[/]
+
+  [#A7DFC5]⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠿⣿⣦⣤⣈⠁⢠⣴⣿⠿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀[/]
+
+  [#86C7C5]⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠉⠻⢿⣿⣦⡉⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀[/]
+
+  [#8BCBB1]⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⢷⣦⣈⠛⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀[/]
+
+  [#B7A1C8]⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⣴⠦⠈⠙⠿⣦⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀[/]
+
+  [#B7A1C8]⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸⣿⣤⡈⠁⢤⣿⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀[/]
+
+  [#DFEDE5]⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠛⠷⠄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀[/]
+
+  [dim #64887B]⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣀⠑⢶⣄⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀[/]
+
+  [dim #64887B]⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⠁⢰⡆⠈⡿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀[/]
+
+  [dim #2B5147]⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠳⠈⣡⠞⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀[/]
+
+  [dim #2B5147]⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀[/]'

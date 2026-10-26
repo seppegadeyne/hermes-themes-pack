@@ -1,0 +1,140 @@
+[
+ {
+  "slug": "catppuccin",
+  "skin": "catppuccin-mocha",
+  "label": "Catppuccin",
+  "mode": "dark"
+ },
+ {
+  "slug": "catppuccin-latte",
+  "skin": "catppuccin-latte",
+  "label": "Catppuccin Latte",
+  "mode": "light"
+ },
+ {
+  "slug": "ethereal",
+  "skin": "ethereal",
+  "label": "Ethereal",
+  "mode": "dark"
+ },
+ {
+  "slug": "everforest",
+  "skin": "everforest-dark",
+  "label": "Everforest",
+  "mode": "dark"
+ },
+ {
+  "slug": "flexoki-light",
+  "skin": "flexoki-light",
+  "label": "Flexoki Light",
+  "mode": "light"
+ },
+ {
+  "slug": "gruvbox",
+  "skin": "gruvbox",
+  "label": "Gruvbox",
+  "mode": "dark"
+ },
+ {
+  "slug": "hackerman",
+  "skin": "hackerman",
+  "label": "Hackerman",
+  "mode": "dark"
+ },
+ {
+  "slug": "jade-horse",
+  "skin": "jade-horse",
+  "label": "Jade Horse",
+  "mode": "dark"
+ },
+ {
+  "slug": "kanagawa",
+  "skin": "kanagawa",
+  "label": "Kanagawa",
+  "mode": "dark"
+ },
+ {
+  "slug": "last-horizon",
+  "skin": "last-horizon",
+  "label": "Last Horizon",
+  "mode": "dark"
+ },
+ {
+  "slug": "lumon",
+  "skin": "lumon",
+  "label": "Lumon",
+  "mode": "dark"
+ },
+ {
+  "slug": "lupine",
+  "skin": "lupine",
+  "label": "Lupine",
+  "mode": "light"
+ },
+ {
+  "slug": "matte-black",
+  "skin": "matte-black",
+  "label": "Matte Black",
+  "mode": "dark"
+ },
+ {
+  "slug": "miasma",
+  "skin": "miasma",
+  "label": "Miasma",
+  "mode": "dark"
+ },
+ {
+  "slug": "nord",
+  "skin": "nord",
+  "label": "Nord",
+  "mode": "dark"
+ },
+ {
+  "slug": "retro-82",
+  "skin": "retro-82",
+  "label": "Retro 82",
+  "mode": "dark"
+ },
+ {
+  "slug": "ristretto",
+  "skin": "ristretto",
+  "label": "Ristretto",
+  "mode": "dark"
+ },
+ {
+  "slug": "rose-pine",
+  "skin": "rose-pine",
+  "label": "Rose Pine",
+  "mode": "light"
+ },
+ {
+  "slug": "solitude",
+  "skin": "solitude",
+  "label": "Solitude",
+  "mode": "dark"
+ },
+ {
+  "slug": "starship",
+  "skin": "starship",
+  "label": "Starship",
+  "mode": "dark"
+ },
+ {
+  "slug": "tokyo-night",
+  "skin": "tokyo-night",
+  "label": "Tokyo Night",
+  "mode": "dark"
+ },
+ {
+  "slug": "vantablack",
+  "skin": "vantablack",
+  "label": "Vantablack",
+  "mode": "dark"
+ },
+ {
+  "slug": "white",
+  "skin": "white",
+  "label": "White",
+  "mode": "light"
+ }
+]

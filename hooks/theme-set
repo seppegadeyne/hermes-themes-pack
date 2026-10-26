@@ -1,0 +1,10 @@
+#!/bin/bash
+# hermes-themes-pack: let Hermes follow the Omarchy theme.
+# Installed by `/theme follow on`; removed by `/theme follow off`. $1 is the theme slug.
+set -u
+
+HERMES_HOME="${HERMES_HOME:-$HOME/.hermes}"
+INSTALLER="$HERMES_HOME/plugins/hermes-themes-pack/installer.py"
+
+[[ -f $INSTALLER && -n ${1:-} ]] || exit 0
+timeout 90 python3 "$INSTALLER" omarchy "$1" >/dev/null 2>&1 || true
