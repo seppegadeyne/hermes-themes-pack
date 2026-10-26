@@ -134,7 +134,11 @@ def uninstall(home=None):
     home = resolve_home(home)
     state = load_receipt(home)
     removed, kept = [], []
+    known = {e["skin"] for e in catalog()}
     for name, record in sorted(state["skins"].items()):
+        if name not in known:
+            kept.append(name)  # not a pack skin name: never build a path from it
+            continue
         target = guarded(home, home / "skins" / f"{name}.yaml")
         if not target.exists() or digest(target.read_bytes()) != record["installed_sha256"]:
             kept.append(name)
@@ -291,6 +295,9 @@ def dispatch(words, home=None):
         if rest[:1] not in (["on"], ["off"]):
             return f"Omarchy follow is {'on' if following() else 'off'}. Use /theme follow on|off."
         message = follow(rest[0] == "on")
+        if rest[0] == "on" and home != Path.home().joinpath(".hermes").resolve():
+            message += ("\nNote: the Omarchy hook always switches the default profile (~/.hermes); "
+                        "this profile only follows Omarchy when you run /theme omarchy.")
         if rest[0] == "on" and omarchy_theme():
             message += "\n" + omarchy_sync(None, home)
         return message
@@ -304,10 +311,12 @@ def configure_parser(parser):
 
 
 def run(args):
-    words = list(args.words) + (["--replace"] if args.replace else [])
+    words = list(args.words)
+    if args.replace and words[:1] == ["install"]:
+        words.append("--replace")
     try:
         print(dispatch(words, args.home))
-    except ThemeError as error:
+    except (ThemeError, OSError, ValueError, subprocess.SubprocessError) as error:
         print(f"Theme: {error}", file=sys.stderr)
         return 1
     return 0

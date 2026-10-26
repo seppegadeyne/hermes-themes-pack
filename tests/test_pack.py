@@ -4,6 +4,7 @@ import json
 import os
 from pathlib import Path
 import re
+import subprocess
 import tempfile
 import unittest
 from unittest import mock
@@ -51,6 +52,23 @@ class AssetTests(unittest.TestCase):
                 self.assertIn(f"\n{art}", text, f"{e['skin']} lacks {art}")
             for flavor in ("branding:", "spinner:", "tool_prefix:"):
                 self.assertNotIn(f"\n{flavor}", text, f"{e['skin']} ships personal {flavor}")
+
+    def test_catalog_metadata(self):
+        manifest = (ROOT / "plugin.yaml").read_text(encoding="utf-8")
+        version = re.search(r'^version: "([0-9.]+)"$', manifest, re.M).group(1)
+        self.assertRegex(manifest, re.compile(r'^requires_hermes: ">=\d+\.\d+\.\d+"$', re.M))
+        self.assertEqual(json.loads((ROOT / "package.json").read_text())["version"], version)
+        self.assertIn(f"- {version}:", (ROOT / "README.md").read_text(encoding="utf-8"))
+        for image in ["catalog-banner.png", *(f"screenshots/{n}.png" for n in ("tokyo-night", "nord"))]:
+            self.assertTrue((ROOT / "docs" / image).is_file(), image)
+
+    def test_no_bytecode_or_binaries_tracked(self):
+        try:
+            tracked = subprocess.run(["git", "ls-files"], cwd=ROOT, capture_output=True, text=True,
+                                     check=True, timeout=30).stdout.split()
+        except (OSError, subprocess.CalledProcessError):
+            self.skipTest("not a git checkout")
+        self.assertFalse([p for p in tracked if p.endswith((".pyc", ".pyo")) or "__pycache__" in p])
 
     def test_mix(self):
         self.assertEqual(build.mix("#000000", "#FFFFFF", 0.5), "#808080")
@@ -160,6 +178,42 @@ class DispatchTests(unittest.TestCase):
         self.assertIn("/theme <name>", m.dispatch(["help"], tempfile.gettempdir()))
         with mock.patch.object(m, "following", return_value=False):
             self.assertIn("follow is off", m.dispatch(["follow"], tempfile.gettempdir()))
+
+    def test_replace_flag_only_applies_to_install(self):
+        import argparse
+        parser = argparse.ArgumentParser()
+        m.configure_parser(parser)
+        seen = []
+        with mock.patch.object(m, "dispatch", side_effect=lambda words, home: seen.append(words) or "ok"):
+            m.run(parser.parse_args(["nord", "--replace"]))
+            m.run(parser.parse_args(["install", "--replace"]))
+        self.assertEqual(seen, [["nord"], ["install", "--replace"]])
+
+    def test_timeout_is_reported_not_raised(self):
+        import subprocess as sp
+        spec2 = importlib.util.spec_from_file_location(
+            "themes_pack_pkg", ROOT / "__init__.py", submodule_search_locations=[str(ROOT)])
+        pkg = importlib.util.module_from_spec(spec2)
+        import sys
+        with mock.patch.dict(sys.modules, {"themes_pack_pkg": pkg}):
+            spec2.loader.exec_module(pkg)
+        with mock.patch.object(pkg, "dispatch", side_effect=sp.TimeoutExpired("hermes", 60)):
+            self.assertTrue(pkg.handle_theme("nord").startswith("Theme:"))
+
+    def test_uninstall_ignores_unknown_receipt_names(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            home = Path(tmp).resolve()
+            m.save_receipt(home, {"skins": {"../config": {"previous": None, "installed_sha256": "x"}}})
+            (home / "config.yaml").write_text("keep\n")
+            removed, kept = m.uninstall(home)
+            self.assertEqual((removed, kept), ([], ["../config"]))
+            self.assertTrue((home / "config.yaml").exists())
+
+    def test_follow_on_notes_default_profile(self):
+        with tempfile.TemporaryDirectory() as tmp, \
+             mock.patch.object(m, "follow", return_value="hook installed"), \
+             mock.patch.object(m, "omarchy_theme", return_value=None):
+            self.assertIn("default profile", m.dispatch(["follow", "on"], tmp))
 
     def test_listing_marks_current(self):
         with mock.patch.object(m, "current_skin", return_value="nord"), \

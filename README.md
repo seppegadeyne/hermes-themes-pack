@@ -1,5 +1,7 @@
 # Hermes Themes Pack
 
+![All 23 themes](docs/catalog-banner.png)
+
 All Omarchy themes as Hermes skins, plus one command to switch them: `/theme`.
 A skin is Hermes' single theme unit: the CLI, the TUI and the Desktop app all
 repaint from it within a second. Optionally Hermes follows the Omarchy theme:
@@ -9,6 +11,17 @@ No core patches, monkeypatches, load-time side effects, network calls or remote
 fonts. MIT licensed. Independent community package, not an upstream Hermes or
 Omarchy product. Replaces the separate `hermes-tokyo-night` and
 `hermes-jade-horse` packages.
+
+Requires Hermes 0.22.5 or newer. Works without Omarchy too: the Omarchy parts
+(`/theme omarchy`, `/theme follow`) are optional.
+
+### Compared with Omarchy's own `omarchy` skin
+
+Omarchy already renders one generic `omarchy` skin from the current theme. This
+pack adds a separate, named skin for every theme (so all of them show up in
+`/skin` and Desktop Appearance at once, also on machines without Omarchy),
+hand-tuned Tokyo Night and Jade Horse skins, banner art recolored per theme, and
+one `/theme` command that works in every Hermes surface.
 
 ## Commands
 
@@ -32,6 +45,15 @@ makes the running gateway broadcast the change to every surface.
 
 ## Install
 
+From the Hermes plugin catalog:
+
+```sh
+hermes plugins install hermes-themes-pack
+hermes plugins enable hermes-themes-pack
+```
+
+Straight from GitHub:
+
 ```sh
 hermes plugins install seppegadeyne/hermes-themes-pack --no-deps
 hermes plugins enable hermes-themes-pack
@@ -53,8 +75,41 @@ selects the matching pack skin. A theme that is not in the pack (for example
 back to Omarchy's own generated `omarchy` skin. The hook does nothing when the
 package is removed, and `/theme follow off` removes only an unmodified copy.
 
+Following is per user, not per profile: Omarchy runs the hook without a
+`HERMES_HOME`, so it always switches the default profile (`~/.hermes`) and does
+nothing when the pack is not installed there. Other profiles can match Omarchy
+with `/theme omarchy`.
+
 Omarchy itself also writes an `omarchy` skin on every theme switch and activates
 it only when Hermes is on `default`/`omarchy`, so it never overrides a pack skin.
+
+## What it does on your system
+
+What you should know before installing. Nothing happens at plugin load; every
+change below is caused by a `/theme` command you run.
+
+- Files written, only inside the active profile's `HERMES_HOME`:
+  `skins/<name>.yaml` for the pack's 23 skins and the receipt
+  `theme-packages/hermes-themes-pack.json`. Personal or edited skins with the
+  same name are skipped, never overwritten (unless `install --replace`, which
+  backs them up into the receipt and restores them on uninstall).
+- Commands run: `hermes config set display.skin <name>` and
+  `hermes config get display.skin` (Hermes' own config writer, 60-second
+  timeout). The pack never edits `config.yaml` itself.
+- Files read outside `HERMES_HOME`: `~/.local/state/omarchy/current/theme.name`
+  (the current Omarchy theme) and the pack's own hook file below (to show the
+  follow state), for `/theme`, `/theme omarchy` and `/theme follow`.
+- Only with `/theme follow on`: one executable hook script at
+  `$XDG_CONFIG_HOME/omarchy/hooks/theme-set.d/50-hermes-themes-pack`
+  (default `~/.config/...`). Omarchy runs it on each theme switch; it runs
+  `python3 ~/.hermes/plugins/hermes-themes-pack/installer.py omarchy <slug>`
+  for the default profile (90-second timeout), which selects the skin through
+  the first `hermes` on `PATH` (else `~/.local/bin/hermes`), and exits silently
+  when the package is not installed there.
+  `/theme follow off` removes it only if it is unmodified.
+- No network calls, no background processes, no Hermes tools, hooks or
+  middleware, no credentials, no telemetry, no self-updater. Updates come only
+  through `hermes plugins update`.
 
 ## Themes
 
@@ -96,12 +151,22 @@ backs it up and restores it on uninstall), and it leaves skins you edited alone.
 
 ```sh
 python3 tools/build.py
+~/.hermes/hermes-agent/venv/bin/python tools/preview.py   # docs/ images (needs Chromium)
 python3 -m unittest discover -s tests -v
 HERMES_REPO=/path/to/hermes-agent "$HERMES_REPO/venv/bin/python" tests/hermes-integration.py
 hermes plugins validate .
 ```
 
 The integration test uses a temporary `HERMES_HOME` and `XDG_CONFIG_HOME`.
+
+## Changelog
+
+- 1.1.0: declare `requires_hermes >=0.22.5`; catalog banner and screenshots
+  (`docs/`, rendered from the skins by `tools/preview.py`); README disclosure;
+  `follow on` notes that the hook switches the default profile; a hung
+  `hermes config` call reports an error instead of a traceback; `--replace`
+  applies only to `install`; uninstall ignores unknown receipt names.
+- 1.0.0: 23 Omarchy skins, `/theme`, Omarchy follow hook.
 
 ## Credits
 

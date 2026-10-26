@@ -1,5 +1,6 @@
 """Hermes theme pack: `/theme` slash command and `hermes theme` CLI. No load-time side effects."""
 import shlex
+import subprocess
 
 from .installer import USAGE, ThemeError, configure_parser, dispatch, run
 
@@ -7,7 +8,7 @@ from .installer import USAGE, ThemeError, configure_parser, dispatch, run
 def handle_theme(raw_args: str) -> str:
     try:
         return dispatch(shlex.split(raw_args or ""))
-    except (ThemeError, OSError, ValueError) as error:
+    except (ThemeError, OSError, ValueError, subprocess.SubprocessError) as error:
         return f"Theme: {error}"
 
 
