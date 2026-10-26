@@ -1,4 +1,4 @@
 name: hermes-themes-pack
-version: "1.1.0"
+version: "1.1.1"
 description: Omarchy theme pack for Hermes — /theme switches every surface and can follow the Omarchy theme.
 requires_hermes: ">=0.22.5"

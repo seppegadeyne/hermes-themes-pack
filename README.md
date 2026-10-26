@@ -124,6 +124,20 @@ optionally `skin.yaml` (hand-made, wins) and `meta.json`
 (`{"skin": "...", "label": "..."}`), then run `python3 tools/build.py` and commit
 `skins/`. The slug should equal the Omarchy theme slug so following works.
 
+## Live repaint per surface
+
+The TUI (`hermes --tui`) and the Desktop app repaint within a second after any
+switch: `/theme`, `/skin`, `hermes config set display.skin` or an Omarchy follow.
+
+The classic CLI (`hermes` / `hermes chat` without `--tui`) does not watch for
+skin changes: it reads the skin at start-up, and only `/skin <name>` typed in
+that same window repaints the prompt, rules and status bar there (the banner and
+earlier output keep the old colors until the next start). So after `/theme`, an
+Omarchy theme switch or a switch from another window, a running classic CLI
+keeps its old colors. Start a new session, or run `/skin <name>` in it. This is
+a Hermes core limitation that a plugin cannot fix through public APIs; upstream
+tracks it in https://github.com/NousResearch/hermes-agent/pull/58932.
+
 ## Desktop
 
 There is no separate desktop half: the Desktop app converts the active skin into
@@ -161,6 +175,8 @@ The integration test uses a temporary `HERMES_HOME` and `XDG_CONFIG_HOME`.
 
 ## Changelog
 
+- 1.1.1: README documents that a running classic CLI does not repaint on a
+  skin switch (Hermes core, upstream PR #58932); the TUI and Desktop do.
 - 1.1.0: declare `requires_hermes >=0.22.5`; catalog banner and screenshots
   (`docs/`, rendered from the skins by `tools/preview.py`); README disclosure;
   `follow on` notes that the hook switches the default profile; a hung
