@@ -75,10 +75,10 @@ selects the matching pack skin. A theme that is not in the pack (for example
 back to Omarchy's own generated `omarchy` skin. The hook does nothing when the
 package is removed, and `/theme follow off` removes only an unmodified copy.
 
-Following is per user, not per profile: Omarchy runs the hook without a
-`HERMES_HOME`, so it always switches the default profile (`~/.hermes`) and does
-nothing when the pack is not installed there. Other profiles can match Omarchy
-with `/theme omarchy`.
+Following is per user and covers every profile: Omarchy runs the hook without a
+`HERMES_HOME`, so it switches the default home (`~/.hermes`) and every profile
+under `~/.hermes/profiles/` that has the pack installed, in parallel. Homes without
+the pack are skipped. A profile that should not follow: remove the pack there.
 
 Omarchy itself also writes an `omarchy` skin on every theme switch and activates
 it only when Hermes is on `default`/`omarchy`, so it never overrides a pack skin.
@@ -102,10 +102,11 @@ change below is caused by a `/theme` command you run.
 - Only with `/theme follow on`: one executable hook script at
   `$XDG_CONFIG_HOME/omarchy/hooks/theme-set.d/50-hermes-themes-pack`
   (default `~/.config/...`). Omarchy runs it on each theme switch; it runs
-  `python3 ~/.hermes/plugins/hermes-themes-pack/installer.py omarchy <slug>`
-  for the default profile (90-second timeout), which selects the skin through
-  the first `hermes` on `PATH` (else `~/.local/bin/hermes`), and exits silently
-  when the package is not installed there.
+  `python3 <home>/plugins/hermes-themes-pack/installer.py omarchy <slug> --home <home>`
+  for `~/.hermes` and each `~/.hermes/profiles/<name>` that has the package
+  installed (90-second timeout each), which installs the pack skins in that home
+  and selects the skin through the first `hermes` on `PATH` (else
+  `~/.local/bin/hermes`). Homes without the package are skipped.
   `/theme follow off` removes it only if it is unmodified.
 - No network calls, no background processes, no Hermes tools, hooks or
   middleware, no credentials, no telemetry, no self-updater. Updates come only
@@ -175,6 +176,9 @@ The integration test uses a temporary `HERMES_HOME` and `XDG_CONFIG_HOME`.
 
 ## Changelog
 
+- 1.2.0: the Omarchy follow hook switches every profile under
+  `~/.hermes/profiles/` that has the pack installed, not only the default
+  profile. Re-run `/theme follow on` to refresh an installed hook.
 - 1.1.1: README documents that a running classic CLI does not repaint on a
   skin switch (Hermes core, upstream PR #58932); the TUI and Desktop do.
 - 1.1.0: declare `requires_hermes >=0.22.5`; catalog banner and screenshots

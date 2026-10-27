@@ -169,8 +169,24 @@ class OmarchyTests(unittest.TestCase):
 
     def test_hook_script_is_inert_without_installer(self):
         text = (ROOT / "hooks" / "theme-set").read_text()
-        self.assertIn('[[ -f $INSTALLER && -n ${1:-} ]] || exit 0', text)
-        self.assertIn("|| true", text)
+        self.assertIn('[[ -n ${1:-} ]] || exit 0', text)
+        self.assertIn('[[ -f $installer ]] || continue', text)
+        self.assertIn("exit 0", text)
+
+    def test_hook_switches_default_and_every_profile_with_the_pack(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root, log = Path(tmp) / "hermes", Path(tmp) / "calls"
+            for home in (root, root / "profiles" / "a", root / "profiles" / "b"):
+                pkg = home / "plugins" / "hermes-themes-pack"
+                pkg.mkdir(parents=True)
+                (pkg / "installer.py").write_text(
+                    f"import sys\nopen({str(log)!r}, 'a').write(' '.join(sys.argv[1:]) + '\\n')\n")
+            (root / "profiles" / "without-pack").mkdir()
+            env = {**os.environ, "HERMES_HOME": str(root)}
+            subprocess.run(["bash", str(ROOT / "hooks" / "theme-set"), "nord"], env=env, check=True)
+            calls = sorted(log.read_text().splitlines())
+            self.assertEqual(calls, sorted(f"omarchy nord --home {h}" for h in
+                                           (root, root / "profiles" / "a", root / "profiles" / "b")))
 
 
 class DispatchTests(unittest.TestCase):
@@ -213,7 +229,7 @@ class DispatchTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as tmp, \
              mock.patch.object(m, "follow", return_value="hook installed"), \
              mock.patch.object(m, "omarchy_theme", return_value=None):
-            self.assertIn("default profile", m.dispatch(["follow", "on"], tmp))
+            self.assertIn("every profile", m.dispatch(["follow", "on"], tmp))
 
     def test_listing_marks_current(self):
         with mock.patch.object(m, "current_skin", return_value="nord"), \

@@ -295,9 +295,9 @@ def dispatch(words, home=None):
         if rest[:1] not in (["on"], ["off"]):
             return f"Omarchy follow is {'on' if following() else 'off'}. Use /theme follow on|off."
         message = follow(rest[0] == "on")
-        if rest[0] == "on" and home != Path.home().joinpath(".hermes").resolve():
-            message += ("\nNote: the Omarchy hook always switches the default profile (~/.hermes); "
-                        "this profile only follows Omarchy when you run /theme omarchy.")
+        if rest[0] == "on":
+            message += ("\nThe Omarchy hook switches ~/.hermes and every profile under "
+                        "~/.hermes/profiles that has this pack installed.")
         if rest[0] == "on" and omarchy_theme():
             message += "\n" + omarchy_sync(None, home)
         return message

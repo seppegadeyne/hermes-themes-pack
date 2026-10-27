@@ -1,10 +1,16 @@
 #!/bin/bash
 # hermes-themes-pack: let Hermes follow the Omarchy theme.
 # Installed by `/theme follow on`; removed by `/theme follow off`. $1 is the theme slug.
+# Switches the default home and every profile under it that has the pack installed.
 set -u
 
-HERMES_HOME="${HERMES_HOME:-$HOME/.hermes}"
-INSTALLER="$HERMES_HOME/plugins/hermes-themes-pack/installer.py"
+ROOT="${HERMES_HOME:-$HOME/.hermes}"
 
-[[ -f $INSTALLER && -n ${1:-} ]] || exit 0
-timeout 90 python3 "$INSTALLER" omarchy "$1" >/dev/null 2>&1 || true
+[[ -n ${1:-} ]] || exit 0
+for home in "$ROOT" "$ROOT"/profiles/*; do
+  installer="$home/plugins/hermes-themes-pack/installer.py"
+  [[ -f $installer ]] || continue
+  timeout 90 python3 "$installer" omarchy "$1" --home "$home" >/dev/null 2>&1 &
+done
+wait
+exit 0
