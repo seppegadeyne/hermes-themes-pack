@@ -19,3 +19,5 @@ new pin is a new PR with the full commit sha and re-pinned image URLs.
 
 Run `python3 -m unittest discover -s tests`. The integration test needs a Hermes
 checkout: `HERMES_REPO=... "$HERMES_REPO/venv/bin/python" tests/hermes-integration.py`.
+
+- Read CONSTRAINTS.md before writing code. Never weaken it to make a change pass; tightening is fine.
